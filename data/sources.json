@@ -1,0 +1,265 @@
+[
+  {
+    "source_id": "kasteev-wikipedia",
+    "url": "https://ru.wikipedia.org/wiki/Национальный_музей_искусств_Республики_Казахстан_имени_Абылхана_Кастеева",
+    "title": "Национальный музей искусств Республики Казахстан имени Абылхана Кастеева",
+    "publisher": "Википедия (участники)",
+    "checked_at": "2026-11-16T22:53:58+05:00",
+    "published_at": null,
+    "valid_until": null,
+    "supports": [
+      {
+        "entity_id": "almaty-kasteev-museum",
+        "field": "name",
+        "value": "Национальный музей искусств Республики Казахстан имени Абылхана Кастеева"
+      },
+      {
+        "entity_id": "almaty-kasteev-museum",
+        "field": "address",
+        "value": "Алматы, микрорайон Коктем-3, 22/1"
+      },
+      {
+        "entity_id": "almaty-kasteev-museum",
+        "field": "reported_coordinates",
+        "value": "43°14′08″ N, 76°55′10″ E; расходится с Kazakhstan.travel"
+      }
+    ]
+  },
+  {
+    "source_id": "kasteev-tourism",
+    "url": "https://kazakhstan.travel/ru/attractions/413",
+    "title": "Музей искусств им. А. Кастеева",
+    "publisher": "Kazakhstan.travel",
+    "checked_at": "2026-11-16T22:53:58+05:00",
+    "published_at": null,
+    "valid_until": null,
+    "supports": [
+      {
+        "entity_id": "almaty-kasteev-museum",
+        "field": "address",
+        "value": "Алматы, микрорайон Коктем-3, 22/1"
+      },
+      {
+        "entity_id": "almaty-kasteev-museum",
+        "field": "reported_coordinates",
+        "value": "43.23600, 76.93080; расходится с Википедией"
+      },
+      {
+        "entity_id": "almaty-kasteev-museum",
+        "field": "reported_opening_hours",
+        "value": "10:00–18:00; дни недели не указаны"
+      },
+      {
+        "entity_id": "almaty-kasteev-museum-entry",
+        "field": "amount_kzt",
+        "value": "2000; взрослый билет. Иностранным гражданам указан отдельный тариф 5000 KZT."
+      }
+    ]
+  },
+  {
+    "source_id": "botanical-official",
+    "url": "https://botsad.kz/ru",
+    "title": "Главный Ботанический сад",
+    "publisher": "Институт ботаники и фитоинтродукции",
+    "checked_at": "2026-11-16T22:53:58+05:00",
+    "published_at": null,
+    "valid_until": null,
+    "supports": [
+      {
+        "entity_id": "almaty-botanical-garden",
+        "field": "name",
+        "value": "Главный Ботанический сад"
+      },
+      {
+        "entity_id": "almaty-botanical-garden",
+        "field": "address",
+        "value": "Алматы, ул. Тимирязева, 36д, к.2 (северный вход)"
+      },
+      {
+        "entity_id": "almaty-botanical-garden",
+        "field": "reported_opening_hours",
+        "value": "Ежедневно 09:00–18:00; первый понедельник месяца — санитарный день. У кассы технический перерыв 15:00–15:30."
+      }
+    ]
+  },
+  {
+    "source_id": "botanical-tariff-2026",
+    "url": "https://www.botsad.kz/en/news/view/vazhnaya_informatsiya_dlya_posetitelei_v_novom_2026_godu",
+    "title": "Важная информация для посетителей в новом 2026 году",
+    "publisher": "Институт ботаники и фитоинтродукции",
+    "checked_at": "2026-11-16T22:53:58+05:00",
+    "published_at": null,
+    "valid_until": null,
+    "supports": [
+      {
+        "entity_id": "almaty-botanical-garden-entry",
+        "field": "reported_tariff",
+        "value": "С 1 января 2026 опубликован взрослый тариф 932,14 KZT; тарифы без тиынов находятся на согласовании. Дата публикации на странице: 01 января 2026; время не указано."
+      }
+    ]
+  },
+  {
+    "source_id": "botanical-wikipedia",
+    "url": "https://ru.wikipedia.org/wiki/Алматинский_ботанический_сад",
+    "title": "Алматинский ботанический сад",
+    "publisher": "Википедия (участники)",
+    "checked_at": "2026-11-16T22:53:58+05:00",
+    "published_at": null,
+    "valid_until": null,
+    "supports": [
+      {
+        "entity_id": "almaty-botanical-garden",
+        "field": "coordinates",
+        "value": "43°13′30″ N, 76°54′54″ E; координаты территории, не входа"
+      }
+    ]
+  },
+  {
+    "source_id": "ykhlas-official",
+    "url": "https://almatymuseums.kz/vnutrennyaya-muzeya-yhlasa",
+    "title": "Музей народных музыкальных инструментов им.Ыхласа",
+    "publisher": "Объединение музеев города Алматы",
+    "checked_at": "2026-11-16T22:53:58+05:00",
+    "published_at": null,
+    "valid_until": null,
+    "supports": [
+      {
+        "entity_id": "almaty-ykhlas-museum",
+        "field": "name",
+        "value": "Музей народных музыкальных инструментов им.Ыхласа"
+      },
+      {
+        "entity_id": "almaty-ykhlas-museum",
+        "field": "address",
+        "value": "Алматы, улица Зенкова, 24а"
+      },
+      {
+        "entity_id": "almaty-ykhlas-museum",
+        "field": "reported_opening_hours",
+        "value": "Карточка: вторник–воскресенье 10:00–00:00. FAQ этой же страницы: вторник–воскресенье 10:00–19:00, понедельник — санитарный день. Расхождение не разрешено."
+      }
+    ]
+  },
+  {
+    "source_id": "ykhlas-hours-announcement",
+    "url": "https://almatymuseums.kz/obyavleniya/obyavlenie-8",
+    "title": "Новый режим работы музея Ыхласа с 1 марта 2026",
+    "publisher": "Объединение музеев города Алматы",
+    "checked_at": "2026-11-16T22:53:58+05:00",
+    "published_at": null,
+    "valid_until": null,
+    "supports": [
+      {
+        "entity_id": "almaty-ykhlas-museum",
+        "field": "reported_opening_hours",
+        "value": "С 1 марта 2026: вторник–суббота 10:00–00:00, понедельник — санитарный день. Воскресенье не указано; карточка музея указывает вторник–воскресенье."
+      }
+    ]
+  },
+  {
+    "source_id": "ykhlas-wikipedia",
+    "url": "https://ru.wikipedia.org/wiki/Музей_музыкальных_инструментов_имени_Ыкыласа",
+    "title": "Музей музыкальных инструментов имени Ыкыласа",
+    "publisher": "Википедия (участники)",
+    "checked_at": "2026-11-16T22:53:58+05:00",
+    "published_at": null,
+    "valid_until": null,
+    "supports": [
+      {
+        "entity_id": "almaty-ykhlas-museum",
+        "field": "coordinates",
+        "value": "43°15′34″ N, 76°57′25″ E"
+      }
+    ]
+  },
+  {
+    "source_id": "panfilov-visit",
+    "url": "https://visitalmaty.kz/activity/park-im-28-gvardejczev-panfilovczev/",
+    "title": "Парк имени 28 гвардейцев-панфиловцев",
+    "publisher": "Visit Almaty",
+    "checked_at": "2026-11-16T22:53:58+05:00",
+    "published_at": null,
+    "valid_until": null,
+    "supports": [
+      {
+        "entity_id": "almaty-panfilov-park",
+        "field": "name",
+        "value": "Парк имени 28 гвардейцев-панфиловцев"
+      }
+    ]
+  },
+  {
+    "source_id": "panfilov-wikipedia",
+    "url": "https://ru.wikipedia.org/wiki/Парк_имени_28_гвардейцев-панфиловцев",
+    "title": "Парк имени 28 гвардейцев-панфиловцев",
+    "publisher": "Википедия (участники)",
+    "checked_at": "2026-11-16T22:53:58+05:00",
+    "published_at": null,
+    "valid_until": null,
+    "supports": [
+      {
+        "entity_id": "almaty-panfilov-park",
+        "field": "coordinates",
+        "value": "43°15′32″ N, 76°57′13″ E; точка территории, не входа"
+      }
+    ]
+  },
+  {
+    "source_id": "central-contacts",
+    "url": "https://csmrk.kz/category/contacts",
+    "title": "Байланыс",
+    "publisher": "Национальный центральный музей РК",
+    "checked_at": "2026-11-16T22:53:58+05:00",
+    "published_at": null,
+    "valid_until": null,
+    "supports": [
+      {
+        "entity_id": "almaty-central-museum",
+        "field": "name",
+        "value": "Қазақстан Республикасы Ұлттық орталық музейі"
+      },
+      {
+        "entity_id": "almaty-central-museum",
+        "field": "address",
+        "value": "Алматы, микрорайон Самал-1, 44"
+      },
+      {
+        "entity_id": "almaty-central-museum",
+        "field": "opening_hours",
+        "value": "09:00–18:00; вторник — выходной. Касса до 17:30."
+      }
+    ]
+  },
+  {
+    "source_id": "central-tickets",
+    "url": "https://csmrk.kz/tickets",
+    "title": "Музейге кіру құны",
+    "publisher": "Национальный центральный музей РК",
+    "checked_at": "2026-11-16T22:53:58+05:00",
+    "published_at": null,
+    "valid_until": null,
+    "supports": [
+      {
+        "entity_id": "almaty-central-museum-entry",
+        "field": "amount_kzt",
+        "value": "1500; взрослые, основная экспозиция, залы 1–4. Для иностранных граждан отдельный билет 5000 KZT во все залы без экскурсовода."
+      }
+    ]
+  },
+  {
+    "source_id": "central-wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Central_State_Museum_of_Kazakhstan",
+    "title": "Central State Museum of Kazakhstan",
+    "publisher": "Wikipedia contributors",
+    "checked_at": "2026-11-16T22:53:58+05:00",
+    "published_at": null,
+    "valid_until": null,
+    "supports": [
+      {
+        "entity_id": "almaty-central-museum",
+        "field": "coordinates",
+        "value": "43°14′09″ N, 76°57′03″ E / 43.23583, 76.95083"
+      }
+    ]
+  }
+]

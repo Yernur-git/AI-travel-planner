@@ -1,0 +1,219 @@
+[
+  {
+    "place_id": "almaty-kasteev-museum",
+    "name": "Национальный музей искусств Республики Казахстан имени Абылхана Кастеева",
+    "interest_tags": [
+      "culture"
+    ],
+    "address": "Алматы, микрорайон Коктем-3, 22/1",
+    "coordinates": null,
+    "visit_duration_minutes": 90,
+    "opening_hours": null,
+    "entry_price": {
+      "basis_id": "almaty-kasteev-museum-entry",
+      "category": "entry",
+      "amount_kzt": 2000,
+      "kind": "published_price",
+      "source_ids": [
+        "kasteev-tourism"
+      ],
+      "assumption": "Опубликованный взрослый тариф 2000 KZT, не тариф для иностранных граждан (5000 KZT). Категорию посетителя необходимо уточнить до расчёта; экскурсии и дополнительные услуги не включены."
+    },
+    "fact_source_ids": {
+      "name": [
+        "kasteev-wikipedia"
+      ],
+      "address": [
+        "kasteev-wikipedia",
+        "kasteev-tourism"
+      ],
+      "coordinates": [],
+      "visit_duration_minutes": []
+    }
+  },
+  {
+    "place_id": "almaty-botanical-garden",
+    "name": "Главный Ботанический сад",
+    "interest_tags": [
+      "nature",
+      "walking"
+    ],
+    "address": "Алматы, ул. Тимирязева, 36д, к.2 (северный вход)",
+    "coordinates": {
+      "latitude": 43.225,
+      "longitude": 76.915
+    },
+    "visit_duration_minutes": 90,
+    "opening_hours": null,
+    "entry_price": {
+      "basis_id": "almaty-botanical-garden-entry",
+      "category": "entry",
+      "amount_kzt": null,
+      "kind": "unknown",
+      "source_ids": [],
+      "assumption": "Опубликовано 932,14 KZT. Целочисленный CostBasis не представляет эту цену точно; округление не согласовано. Исходный тариф сохранён в botanical-tariff-2026; amount_kzt=null не означает бесплатно."
+    },
+    "fact_source_ids": {
+      "name": [
+        "botanical-official"
+      ],
+      "address": [
+        "botanical-official"
+      ],
+      "coordinates": [
+        "botanical-wikipedia"
+      ],
+      "visit_duration_minutes": []
+    }
+  },
+  {
+    "place_id": "almaty-ykhlas-museum",
+    "name": "Музей народных музыкальных инструментов им.Ыхласа",
+    "interest_tags": [
+      "culture",
+      "history"
+    ],
+    "address": "Алматы, улица Зенкова, 24а",
+    "coordinates": {
+      "latitude": 43.259444,
+      "longitude": 76.956944
+    },
+    "visit_duration_minutes": 60,
+    "opening_hours": null,
+    "entry_price": {
+      "basis_id": "almaty-ykhlas-museum-entry",
+      "category": "entry",
+      "amount_kzt": null,
+      "kind": "unknown",
+      "source_ids": [],
+      "assumption": "Цена не подтверждена открытой страницей оператора; Ticketon вернул 403. Поисковый фрагмент не используется как проверенная цена."
+    },
+    "fact_source_ids": {
+      "name": [
+        "ykhlas-official"
+      ],
+      "address": [
+        "ykhlas-official"
+      ],
+      "coordinates": [
+        "ykhlas-wikipedia"
+      ],
+      "visit_duration_minutes": []
+    }
+  },
+  {
+    "place_id": "almaty-panfilov-park",
+    "name": "Парк имени 28 гвардейцев-панфиловцев",
+    "interest_tags": [
+      "history",
+      "nature",
+      "walking"
+    ],
+    "address": null,
+    "coordinates": {
+      "latitude": 43.258889,
+      "longitude": 76.953611
+    },
+    "visit_duration_minutes": 60,
+    "opening_hours": null,
+    "entry_price": {
+      "basis_id": "almaty-panfilov-park-entry",
+      "category": "entry",
+      "amount_kzt": null,
+      "kind": "unknown",
+      "source_ids": [],
+      "assumption": "Плата за вход не подтверждена просмотренными источниками. Не считать нулевой стоимостью."
+    },
+    "fact_source_ids": {
+      "name": [
+        "panfilov-visit"
+      ],
+      "address": [],
+      "coordinates": [
+        "panfilov-wikipedia"
+      ],
+      "visit_duration_minutes": []
+    }
+  },
+  {
+    "place_id": "almaty-central-museum",
+    "name": "Қазақстан Республикасы Ұлттық орталық музейі",
+    "interest_tags": [
+      "culture",
+      "history"
+    ],
+    "address": "Алматы, микрорайон Самал-1, 44",
+    "coordinates": {
+      "latitude": 43.23583,
+      "longitude": 76.95083
+    },
+    "visit_duration_minutes": 90,
+    "opening_hours": {
+      "weekly": {
+        "mon": [
+          {
+            "start_time": "09:00",
+            "end_time": "18:00"
+          }
+        ],
+        "tue": [],
+        "wed": [
+          {
+            "start_time": "09:00",
+            "end_time": "18:00"
+          }
+        ],
+        "thu": [
+          {
+            "start_time": "09:00",
+            "end_time": "18:00"
+          }
+        ],
+        "fri": [
+          {
+            "start_time": "09:00",
+            "end_time": "18:00"
+          }
+        ],
+        "sat": [
+          {
+            "start_time": "09:00",
+            "end_time": "18:00"
+          }
+        ],
+        "sun": [
+          {
+            "start_time": "09:00",
+            "end_time": "18:00"
+          }
+        ]
+      },
+      "exceptions": {},
+      "source_ids": [
+        "central-contacts"
+      ]
+    },
+    "entry_price": {
+      "basis_id": "almaty-central-museum-entry",
+      "category": "entry",
+      "amount_kzt": 1500,
+      "kind": "published_price",
+      "source_ids": [
+        "central-tickets"
+      ],
+      "assumption": "Взрослый билет в основную экспозицию (залы 1–4); не тариф для иностранных граждан (5000 KZT во все залы). Категорию посетителя уточнить до расчёта; дополнительные залы и экскурсии не включены."
+    },
+    "fact_source_ids": {
+      "name": [
+        "central-contacts"
+      ],
+      "address": [
+        "central-contacts"
+      ],
+      "coordinates": [
+        "central-wikipedia"
+      ],
+      "visit_duration_minutes": []
+    }
+  }
+]
