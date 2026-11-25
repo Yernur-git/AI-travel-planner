@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.1-draft",
+  "start_date": "2026-11-26",
+  "end_date": "2026-11-26",
+  "budget_kzt": 15000,
+  "interests": ["culture", "history"],
+  "city": "Almaty",
+  "currency": "KZT",
+  "travelers": 1,
+  "language": "ru"
+}

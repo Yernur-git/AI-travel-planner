@@ -1,0 +1,323 @@
+{
+  "diagnostic": "gemini_plan_draft",
+  "verified_trip_result": false,
+  "request": {
+    "schema_version": "1.1-draft",
+    "start_date": "2026-11-26",
+    "end_date": "2026-11-26",
+    "budget_kzt": 15000,
+    "interests": [
+      "culture",
+      "history"
+    ],
+    "city": "Almaty",
+    "currency": "KZT",
+    "travelers": 1,
+    "language": "ru"
+  },
+  "draft": {
+    "days": [
+      {
+        "date": "2026-11-26",
+        "activities": [
+          {
+            "start_time": "10:00",
+            "end_time": "11:30",
+            "activity_id": "visit-central-museum",
+            "kind": "visit",
+            "place_id": "almaty-central-museum",
+            "reason": "Выбрано по интересам: culture, history.",
+            "source_ids": [
+              "central-contacts"
+            ],
+            "cost_basis_ids": [
+              "almaty-central-museum-entry"
+            ]
+          },
+          {
+            "start_time": "11:30",
+            "end_time": "12:00",
+            "activity_id": "lunch-break",
+            "kind": "meal",
+            "place_id": null,
+            "reason": "Питание: стоимость неизвестна.",
+            "source_ids": [],
+            "cost_basis_ids": []
+          },
+          {
+            "start_time": "12:00",
+            "end_time": "13:00",
+            "activity_id": "visit-ykhlas-museum",
+            "kind": "visit",
+            "place_id": "almaty-ykhlas-museum",
+            "reason": "Выбрано по интересам: culture, history.",
+            "source_ids": [
+              "ykhlas-official"
+            ],
+            "cost_basis_ids": [
+              "almaty-ykhlas-museum-entry"
+            ]
+          }
+        ],
+        "transfers": [
+          {
+            "from_activity_id": "visit-central-museum",
+            "to_activity_id": "lunch-break",
+            "duration_minutes": null,
+            "method": "unknown",
+            "cost_basis_ids": []
+          },
+          {
+            "from_activity_id": "lunch-break",
+            "to_activity_id": "visit-ykhlas-museum",
+            "duration_minutes": null,
+            "method": "unknown",
+            "cost_basis_ids": []
+          }
+        ]
+      }
+    ],
+    "assumptions": [
+      "Черновик Gemini: бюджет не рассчитан; питание и транспорт требуют проверки.",
+      "Время визитов предложено моделью; неизвестные часы и переходы не проверены.",
+      "Данные каталога являются снимком; будущие цены и часы не гарантированы."
+    ]
+  },
+  "metadata": {
+    "catalog_version": "sha256:934a09518abb73acf6fcf7195b5c16ae79105b80f1716c7fbb5fc8f8021420ca",
+    "prompt_version": "gemini-catalog-v1",
+    "model": "gemini-3.5-flash-lite",
+    "attempts": 2,
+    "mode": "ai"
+  },
+  "places": [
+    {
+      "place_id": "almaty-ykhlas-museum",
+      "name": "Музей народных музыкальных инструментов им.Ыхласа",
+      "interest_tags": [
+        "culture",
+        "history"
+      ],
+      "address": "Алматы, улица Зенкова, 24а",
+      "coordinates": {
+        "latitude": 43.259444,
+        "longitude": 76.956944
+      },
+      "visit_duration_minutes": 60,
+      "opening_hours": null,
+      "entry_price": {
+        "basis_id": "almaty-ykhlas-museum-entry",
+        "category": "entry",
+        "amount_kzt": null,
+        "kind": "unknown",
+        "source_ids": [],
+        "assumption": "Цена не подтверждена открытой страницей оператора; Ticketon вернул 403. Поисковый фрагмент не используется как проверенная цена."
+      },
+      "fact_source_ids": {
+        "name": [
+          "ykhlas-official"
+        ],
+        "address": [
+          "ykhlas-official"
+        ],
+        "coordinates": [
+          "ykhlas-wikipedia"
+        ],
+        "visit_duration_minutes": []
+      }
+    },
+    {
+      "place_id": "almaty-central-museum",
+      "name": "Қазақстан Республикасы Ұлттық орталық музейі",
+      "interest_tags": [
+        "culture",
+        "history"
+      ],
+      "address": "Алматы, микрорайон Самал-1, 44",
+      "coordinates": {
+        "latitude": 43.23583,
+        "longitude": 76.95083
+      },
+      "visit_duration_minutes": 90,
+      "opening_hours": {
+        "weekly": {
+          "mon": [
+            {
+              "start_time": "09:00",
+              "end_time": "18:00"
+            }
+          ],
+          "tue": [],
+          "wed": [
+            {
+              "start_time": "09:00",
+              "end_time": "18:00"
+            }
+          ],
+          "thu": [
+            {
+              "start_time": "09:00",
+              "end_time": "18:00"
+            }
+          ],
+          "fri": [
+            {
+              "start_time": "09:00",
+              "end_time": "18:00"
+            }
+          ],
+          "sat": [
+            {
+              "start_time": "09:00",
+              "end_time": "18:00"
+            }
+          ],
+          "sun": [
+            {
+              "start_time": "09:00",
+              "end_time": "18:00"
+            }
+          ]
+        },
+        "exceptions": {},
+        "source_ids": [
+          "central-contacts"
+        ]
+      },
+      "entry_price": {
+        "basis_id": "almaty-central-museum-entry",
+        "category": "entry",
+        "amount_kzt": 1500,
+        "kind": "published_price",
+        "source_ids": [
+          "central-tickets"
+        ],
+        "assumption": "Взрослый билет в основную экспозицию (залы 1–4); не тариф для иностранных граждан (5000 KZT во все залы). Категорию посетителя уточнить до расчёта; дополнительные залы и экскурсии не включены."
+      },
+      "fact_source_ids": {
+        "name": [
+          "central-contacts"
+        ],
+        "address": [
+          "central-contacts"
+        ],
+        "coordinates": [
+          "central-wikipedia"
+        ],
+        "visit_duration_minutes": []
+      }
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "ykhlas-official",
+      "url": "https://almatymuseums.kz/vnutrennyaya-muzeya-yhlasa",
+      "title": "Музей народных музыкальных инструментов им.Ыхласа",
+      "publisher": "Объединение музеев города Алматы",
+      "checked_at": "2026-11-16T22:53:58+05:00",
+      "supports": [
+        {
+          "entity_id": "almaty-ykhlas-museum",
+          "field": "name",
+          "value": "Музей народных музыкальных инструментов им.Ыхласа"
+        },
+        {
+          "entity_id": "almaty-ykhlas-museum",
+          "field": "address",
+          "value": "Алматы, улица Зенкова, 24а"
+        },
+        {
+          "entity_id": "almaty-ykhlas-museum",
+          "field": "reported_opening_hours",
+          "value": "Карточка: вторник–воскресенье 10:00–00:00. FAQ этой же страницы: вторник–воскресенье 10:00–19:00, понедельник — санитарный день. Расхождение не разрешено."
+        }
+      ],
+      "published_at": null,
+      "valid_until": null
+    },
+    {
+      "source_id": "ykhlas-wikipedia",
+      "url": "https://ru.wikipedia.org/wiki/%D0%9C%D1%83%D0%B7%D0%B5%D0%B9_%D0%BC%D1%83%D0%B7%D1%8B%D0%BA%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85_%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%BE%D0%B2_%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8_%D0%AB%D0%BA%D1%8B%D0%BB%D0%B0%D1%81%D0%B0",
+      "title": "Музей музыкальных инструментов имени Ыкыласа",
+      "publisher": "Википедия (участники)",
+      "checked_at": "2026-11-16T22:53:58+05:00",
+      "supports": [
+        {
+          "entity_id": "almaty-ykhlas-museum",
+          "field": "coordinates",
+          "value": "43°15′34″ N, 76°57′25″ E"
+        }
+      ],
+      "published_at": null,
+      "valid_until": null
+    },
+    {
+      "source_id": "central-contacts",
+      "url": "https://csmrk.kz/category/contacts",
+      "title": "Байланыс",
+      "publisher": "Национальный центральный музей РК",
+      "checked_at": "2026-11-16T22:53:58+05:00",
+      "supports": [
+        {
+          "entity_id": "almaty-central-museum",
+          "field": "name",
+          "value": "Қазақстан Республикасы Ұлттық орталық музейі"
+        },
+        {
+          "entity_id": "almaty-central-museum",
+          "field": "address",
+          "value": "Алматы, микрорайон Самал-1, 44"
+        },
+        {
+          "entity_id": "almaty-central-museum",
+          "field": "opening_hours",
+          "value": "09:00–18:00; вторник — выходной. Касса до 17:30."
+        }
+      ],
+      "published_at": null,
+      "valid_until": null
+    },
+    {
+      "source_id": "central-tickets",
+      "url": "https://csmrk.kz/tickets",
+      "title": "Музейге кіру құны",
+      "publisher": "Национальный центральный музей РК",
+      "checked_at": "2026-11-16T22:53:58+05:00",
+      "supports": [
+        {
+          "entity_id": "almaty-central-museum-entry",
+          "field": "amount_kzt",
+          "value": "1500; взрослые, основная экспозиция, залы 1–4. Для иностранных граждан отдельный билет 5000 KZT во все залы без экскурсовода."
+        }
+      ],
+      "published_at": null,
+      "valid_until": null
+    },
+    {
+      "source_id": "central-wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Central_State_Museum_of_Kazakhstan",
+      "title": "Central State Museum of Kazakhstan",
+      "publisher": "Wikipedia contributors",
+      "checked_at": "2026-11-16T22:53:58+05:00",
+      "supports": [
+        {
+          "entity_id": "almaty-central-museum",
+          "field": "coordinates",
+          "value": "43°14′09″ N, 76°57′03″ E / 43.23583, 76.95083"
+        }
+      ],
+      "published_at": null,
+      "valid_until": null
+    }
+  ],
+  "budget_status": "unknown",
+  "schedule_status": "unknown",
+  "run_note": {
+    "date": "2026-11-25",
+    "kind": "real_gemini_smoke_test",
+    "ai_quality_evaluation": false,
+    "session_generation_calls": 6,
+    "final_run_attempts": 2,
+    "earlier_runs": "Two CLI runs returned SERVICE_UNAVAILABLE; diagnostic request completed; another diagnostic request returned HTTP 503. Final CLI first response failed validation, second accepted. Raw responses were not printed or retained."
+  }
+}
