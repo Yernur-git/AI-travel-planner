@@ -35,6 +35,23 @@ def test_demo_roundtrip_and_provenance(result_data):
     assert result.schedule_check.status == "unknown"
 
 
+@pytest.mark.parametrize("days", [1, 3])
+def test_demo_issues_reference_activities_on_matching_dates(request_data, days):
+    start_date = TripRequest.model_validate(request_data).start_date
+    request_data["end_date"] = (start_date + timedelta(days=days - 1)).isoformat()
+    request = TripRequest.model_validate(request_data)
+    _, result = build_demo(request)
+
+    activities_by_date = {
+        day.date: {activity.activity_id for activity in day.activities}
+        for day in result.itinerary
+    }
+    for issues in (result.budget.issues, result.schedule_check.issues):
+        assert {issue.date for issue in issues} == set(activities_by_date)
+        for issue in issues:
+            assert issue.activity_id in activities_by_date[issue.date]
+
+
 @pytest.mark.parametrize("days", [1, 2, 3])
 def test_request_accepts_inclusive_lengths(request_data, days):
     request = TripRequest.model_validate(request_data)

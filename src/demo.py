@@ -58,14 +58,24 @@ def build_demo(request: TripRequest | None = None) -> tuple[TripRequest, TripRes
             "items": items, "known_subtotal_kzt": 0,
             "unknown_cost_item_ids": [item["cost_item_id"] for item in items],
             "total_estimate_kzt": None, "budget_status": "unknown", "remaining_kzt": None,
-            "issues": [{"code": "MISSING_COST", "message": "Цены в демо неизвестны.",
-                        "date": day, "activity_id": "demo_activity"}],
+            "issues": [
+                {
+                    "code": "MISSING_COST", "message": "Цены в демо неизвестны.",
+                    "date": day["date"], "activity_id": day["activities"][0]["activity_id"],
+                }
+                for day in days
+            ],
         },
         "schedule_check": {
             "status": "unknown",
-            "issues": [{"code": "UNKNOWN_OPENING_HOURS",
-                        "message": "В демо нет проверенных часов работы.",
-                        "date": day, "activity_id": "demo_activity"}],
+            "issues": [
+                {
+                    "code": "UNKNOWN_OPENING_HOURS",
+                    "message": "В демо нет проверенных часов работы.",
+                    "date": day["date"], "activity_id": day["activities"][0]["activity_id"],
+                }
+                for day in days
+            ],
         },
         "sources": [],
         "warnings": [{"code": "DEMO_DATA", "message": "Место условное. Источников нет. "
