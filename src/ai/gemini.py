@@ -56,7 +56,8 @@ def _minutes(value: str) -> int:
     return hour * 60 + minute
 
 
-def validate_draft(raw: str, request: TripRequest, selection: CatalogSelection) -> PlanDraft:
+def validate_draft(raw: str, request: TripRequest, selection: CatalogSelection, *,
+                   defer_schedule: bool = False) -> PlanDraft:
     def unique_keys(pairs):
         result = {}
         for key, value in pairs:
@@ -85,7 +86,7 @@ def validate_draft(raw: str, request: TripRequest, selection: CatalogSelection) 
         for activity in day.activities:
             if not re.fullmatch(r"[a-zA-Z0-9_-]{1,64}", activity.activity_id):
                 raise PlannerError("INVALID_RESPONSE")
-            if activity.start_time < previous_end:
+            if not defer_schedule and activity.start_time < previous_end:
                 raise PlannerError("INVALID_RESPONSE")
             previous_end = activity.end_time
             if activity.kind != "visit":
@@ -94,7 +95,7 @@ def validate_draft(raw: str, request: TripRequest, selection: CatalogSelection) 
                 activity.reason = "Питание: стоимость неизвестна." if activity.kind == "meal" else "Перерыв."
                 continue
             place = places.get(activity.place_id)
-            if place is None or place.place_id in visited:
+            if place is None or (not defer_schedule and place.place_id in visited):
                 raise PlannerError("INVALID_RESPONSE")
             visited.add(place.place_id)
             tags = sorted(set(request.interests) & set(place.interest_tags))
@@ -109,9 +110,9 @@ def validate_draft(raw: str, request: TripRequest, selection: CatalogSelection) 
                 if sid not in sources or not any(f.entity_id in (place.place_id, place.entry_price.basis_id)
                                                  for f in sources[sid].supports):
                     raise PlannerError("INVALID_RESPONSE")
-            if _minutes(activity.end_time) - _minutes(activity.start_time) < place.visit_duration_minutes:
+            if not defer_schedule and _minutes(activity.end_time) - _minutes(activity.start_time) < place.visit_duration_minutes:
                 raise PlannerError("INVALID_RESPONSE")
-            if place.opening_hours is not None:
+            if not defer_schedule and place.opening_hours is not None:
                 hours = place.opening_hours
                 intervals = hours.exceptions.get(day.date, hours.weekly.get(
                     ("mon", "tue", "wed", "thu", "fri", "sat", "sun")[day.date.weekday()]))
@@ -184,7 +185,13 @@ def gemini_transport(settings: Settings, prompt: str, schema: dict) -> str:
 
 
 def generate(request: TripRequest, selection: CatalogSelection, settings: Settings, *,
-             max_attempts: int = 1, transport: Callable = gemini_transport) -> tuple[PlanDraft, ResultMetadata]:
+             max_attempts: int = 1, transport: Callable = gemini_transport,
+             defer_schedule: bool = False) -> tuple[PlanDraft, ResultMetadata]:
+    """Generate a catalogue-safe draft; defer_schedule requires a subsequent check_schedule.
+
+    Standalone callers keep the original timing checks by default. The planning
+    loop defers them so known violations can become structured repair feedback.
+    """
     if type(max_attempts) is not int or not 1 <= max_attempts <= 3:
         raise PlannerError("CONFIG_ERROR")
     if not settings.api_key.strip():
@@ -197,7 +204,7 @@ def generate(request: TripRequest, selection: CatalogSelection, settings: Settin
     for attempt in range(1, max_attempts + 1):
         try:
             raw = transport(settings, build_prompt(request, selection, attempt > 1), PlanDraft.model_json_schema())
-            draft = validate_draft(raw, request, selection)
+            draft = validate_draft(raw, request, selection, defer_schedule=defer_schedule)
             return draft, ResultMetadata(mode="ai", model=settings.model, attempts=attempt,
                 catalog_version=selection.catalog_version, prompt_version=PROMPT_VERSION)
         except PlannerError as exc:
