@@ -1,0 +1,23 @@
+{
+  "status": "unknown",
+  "issues": [
+    {
+      "code": "UNKNOWN_OPENING_HOURS",
+      "message": "Часы на эту дату неизвестны.",
+      "date": "2026-11-26",
+      "activity_id": "visit-ykhlas-museum"
+    },
+    {
+      "code": "UNKNOWN_TRANSFER_TIME",
+      "message": "Нет независимой оценки времени перехода; число модели не подтверждает его.",
+      "date": "2026-11-26",
+      "activity_id": "lunch-break"
+    },
+    {
+      "code": "UNKNOWN_TRANSFER_TIME",
+      "message": "Нет независимой оценки времени перехода; число модели не подтверждает его.",
+      "date": "2026-11-26",
+      "activity_id": "visit-ykhlas-museum"
+    }
+  ]
+}
