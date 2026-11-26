@@ -134,6 +134,59 @@ def _result_fixture(status):
     return payload
 
 
+def _cost_kinds_fixture():
+    payload = _result_fixture("partial")
+    items = payload["budget"]["items"]
+    published = next(item for item in items if item["category"] == "entry")
+    estimate = next(item for item in items if item["category"] == "food")
+    unknown = next(item for item in items if item["category"] == "transport")
+    published.update(
+        unit_amount_kzt=500,
+        amount_kzt=500,
+        kind="published_price",
+        source_ids=["app_test_price_source"],
+    )
+    estimate.update(
+        unit_amount_kzt=250,
+        amount_kzt=250,
+        kind="editorial_estimate",
+        assumption="Синтетическое допущение AppTest: 250 KZT за приём пищи.",
+    )
+    budget = payload["budget"]
+    budget.update(
+        known_subtotal_kzt=750,
+        unknown_cost_item_ids=[unknown["cost_item_id"]],
+        issues=[
+            {
+                "code": "MISSING_COST",
+                "message": "Синтетическая неизвестная стоимость транспорта.",
+                "date": unknown["date"],
+                "activity_id": unknown["activity_id"],
+            }
+        ],
+    )
+    payload["itinerary"][0].update(known_subtotal_kzt=750)
+    payload["sources"] = [
+        {
+            "source_id": "app_test_price_source",
+            "url": "https://example.invalid/published-price",
+            "title": "Синтетический источник опубликованной цены",
+            "publisher": "AppTest",
+            "checked_at": "2026-01-01T00:00:00+05:00",
+            "published_at": None,
+            "valid_until": None,
+            "supports": [
+                {
+                    "entity_id": published["basis_id"],
+                    "field": "amount_kzt",
+                    "value": "500",
+                }
+            ],
+        }
+    ]
+    return payload
+
+
 def test_trip_form_submits_to_explicit_demo_and_clears_old_result_on_error():
     app = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app.py")).run()
     assert not app.exception
@@ -219,7 +272,7 @@ def test_app_displays_every_contract_status_as_synthetic_fixture(status, expecte
         rendered = "\n".join(str(item.value) for item in app.get("markdown"))
         rendered += "\n" + "\n".join(str(item.value) for item in app.get("write"))
         assert "Итоговая оценка: неизвестна" in rendered
-        assert "сумма неизвестна" in rendered
+        assert "неизвестна · Сумма неизвестна" in rendered
         assert "Источники не указаны." in rendered
         assert "Итоговая оценка: 0 KZT" not in rendered
         note = "только подтверждённая часть; это не значит, что поездка бесплатна"
@@ -239,3 +292,19 @@ def test_app_displays_every_contract_status_as_synthetic_fixture(status, expecte
     if status in {"infeasible", "invalid_request", "service_error"}:
         assert any("Синтетическая ошибка" in item.value for item in app.error)
         assert not any(item.value == "Маршрут по дням" for item in app.markdown)
+
+
+def test_app_displays_cost_kinds_and_editorial_assumption():
+    app = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "app.py"))
+    app.session_state["trip_result"] = _cost_kinds_fixture()
+    app.session_state["test_fixture"] = True
+    app.run()
+
+    assert not app.exception
+    expense_lines = [item.value for item in app.markdown]
+    captions = [item.value for item in app.caption]
+    assert any("500 KZT · Опубликованная цена" in line for line in expense_lines)
+    assert any("250 KZT · Редакционная оценка" in line for line in expense_lines)
+    assert any("Основание: Синтетическое допущение AppTest" in caption for caption in captions)
+    assert any("неизвестна · Сумма неизвестна" in line for line in expense_lines)
+    assert any("https://example.invalid/published-price" in line for line in expense_lines)

@@ -18,6 +18,11 @@ BUDGET_LABELS = {
     "unknown": "неизвестно",
 }
 CATEGORY_LABELS = {"entry": "билеты", "food": "питание", "transport": "местный транспорт"}
+COST_KIND_LABELS = {
+    "published_price": "Опубликованная цена",
+    "editorial_estimate": "Редакционная оценка",
+    "unknown": "Сумма неизвестна",
+}
 KIND_LABELS = {"visit": "Посещение", "meal": "Приём пищи", "break": "Перерыв"}
 INTEREST_LABELS = {
     "culture": "Культура",
@@ -179,11 +184,14 @@ def render_trip_result(result: TripResult, *, test_fixture: bool = False) -> Non
                 amount = (
                     f"{_money(item.amount_kzt)} KZT"
                     if item.amount_kzt is not None
-                    else "сумма неизвестна"
+                    else "неизвестна"
                 )
                 st.write(
-                    f"{item.date.isoformat()} · {CATEGORY_LABELS[item.category]}{owner}: {amount}"
+                    f"{item.date.isoformat()} · {CATEGORY_LABELS[item.category]}{owner}: "
+                    f"{amount} · {COST_KIND_LABELS[item.kind]}"
                 )
+                if item.assumption:
+                    st.caption(f"Основание: {item.assumption}")
                 _source_links(item.source_ids, sources)
             _issues(budget.issues, activity_names)
 
