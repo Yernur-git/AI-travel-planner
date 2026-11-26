@@ -2,7 +2,8 @@ import streamlit as st
 from pydantic import ValidationError
 
 from src.demo import build_demo
-from src.contracts.models import SCHEMA_VERSION, TripRequest
+from src.contracts.models import SCHEMA_VERSION, TripRequest, TripResult
+from src.ui.results import render_trip_result
 
 st.set_page_config(page_title="AI Travel Planner", page_icon=None)
 st.title("AI Travel Planner")
@@ -39,7 +40,8 @@ with st.form("trip_form"):
     submitted = st.form_submit_button("Показать демонстрационный пример", key="submit_trip")
 
 if submitted:
-    st.session_state.pop("trip_request", None)
+    st.session_state.pop("trip_result", None)
+    st.session_state.pop("test_fixture", None)
     if end_date < start_date:
         st.error("Дата окончания не может быть раньше даты начала.")
     elif (end_date - start_date).days > 2:
@@ -62,29 +64,23 @@ if submitted:
         except ValidationError:
             st.error("Параметры не прошли проверку контракта. Проверьте даты, бюджет и интересы.")
         else:
-            st.session_state["trip_request"] = request.model_dump(mode="python")
+            _, result = build_demo(request)
+            st.session_state["trip_result"] = result.model_dump(mode="json")
 
-if "trip_request" in st.session_state:
-    request, result = build_demo(TripRequest.model_validate(st.session_state["trip_request"]))
-    st.subheader("Демонстрационный результат")
-    st.info(result.message)
-    st.caption("Это фиксированная учебная структура: выбранные интересы не подбирают места, "
-               "а введённый бюджет не рассчитывается и не проверяется.")
-    st.write(
-        f"Даты: {request.start_date.isoformat()} — {request.end_date.isoformat()} · "
-        f"Бюджет: {request.budget_kzt:,} KZT · "
-        f"Интересы: {', '.join(interest_labels[item] for item in request.interests)}"
-    )
-    st.write("Статус: partial — неполная проверка. Расходы неизвестны. Источников: 0.")
-    for day in result.itinerary:
-        st.write(f"День {day.date.isoformat()}")
-        for activity in day.activities:
-            st.write(f"{activity.start_time}–{activity.end_time}: {activity.place_name}")
-            st.caption(activity.reason)
-    st.write("Итоговая стоимость и остаток бюджета неизвестны. "
-             "Известная часть 0 KZT не означает, что поездка бесплатна.")
-    with st.expander("Полный результат по контракту"):
-        st.json(result.model_dump(mode="json"), expanded=True)
+if "trip_result" in st.session_state:
+    try:
+        result = TripResult.model_validate(st.session_state["trip_result"])
+    except ValidationError:
+        st.error("Результат не соответствует контракту TripResult и не может быть показан.")
+    else:
+        st.subheader(
+            "Демонстрационный результат"
+            if result.metadata.mode == "demo"
+            else "Результат поездки"
+        )
+        render_trip_result(result, test_fixture=st.session_state.get("test_fixture", False))
+        with st.expander("Полный результат по контракту"):
+            st.json(result.model_dump(mode="json"), expanded=True)
 
-st.caption("Ернур: каталог, AI и расписание. Рахат: интерфейс и бюджет. "
-           "Реальные источники, генерация и расчёты ещё не реализованы.")
+st.caption("Ернур: каталог, AI и расписание. Рахат: интерфейс и модуль бюджета. "
+           "К текущей форме реальные источники, генерация и расчёты пока не подключены.")
